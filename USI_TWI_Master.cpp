@@ -20,7 +20,7 @@
 *			length should be these two bytes plus the number of bytes to read.
 ****************************************************************************/
 #include <avr/interrupt.h>
-#define F_CPU 1000000UL	      // Sets up the default speed for delay.h
+#define F_CPU 1000000UL	      // TODO Sets up the default speed for delay.h
 #include <util/delay.h>
 #include <avr/io.h>
 #include "USI_TWI_Master.h"
@@ -276,7 +276,7 @@ unsigned char USI_TWI_Master_Transfer( unsigned char temp )
 	_delay_us(T2_TWI);
     USICR = temp;                          // Generate positve SCL edge.
     while( !(PIN_USI & (1<<PIN_USI_SCL)) );// Wait for SCL to go high.
-	_delay_us(T4_TWI);
+    _delay_us(T4_TWI);
     USICR = temp;                          // Generate negative SCL edge.
   }while( !(USISR & (1<<USIOIF)) );        // Check for transfer complete.
   
@@ -321,9 +321,9 @@ unsigned char USI_TWI_Master_Stop( void )
   PORT_USI &= ~(1<<PIN_USI_SDA);           // Pull SDA low.
   PORT_USI |= (1<<PIN_USI_SCL);            // Release SCL.
   while( !(PIN_USI & (1<<PIN_USI_SCL)) );  // Wait for SCL to go high.  
-	_delay_us(T4_TWI);
+  _delay_us(T4_TWI);
   PORT_USI |= (1<<PIN_USI_SDA);            // Release SDA.
-	_delay_us(T2_TWI);
+  _delay_us(T2_TWI);
   
 #ifdef SIGNAL_VERIFY
   if( !(USISR & (1<<USIPF)) )
