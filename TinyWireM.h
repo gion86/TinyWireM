@@ -61,7 +61,5 @@ class USI_TWI
     uint8_t available(); 
 };
 
-extern USI_TWI TinyWireM;
-
 #endif
 

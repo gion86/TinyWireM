@@ -89,8 +89,3 @@ uint8_t USI_TWI::available(){ // the bytes available that haven't been read yet
   return USI_BytesAvail - (USI_LastRead); 
 }
 
-
-// Preinstantiate Objects //////////////////////////////////////////////////////
-
-USI_TWI TinyWireM = USI_TWI();
-
